@@ -1,5 +1,7 @@
 from django.db import models
 from django.contrib.auth.models import AbstractUser
+from django.contrib.auth import get_user_model
+
 
 # Create your models here.
 
@@ -12,3 +14,7 @@ from django.contrib.auth.models import AbstractUser
 
 class User(AbstractUser):
     middle_name = models.CharField(max_length=20)
+    street = models.CharField(max_length=100)
+    city = models.CharField(max_length=50)
+    state = models.CharField(max_length=15)
+    zip_code = models.IntegerField()
