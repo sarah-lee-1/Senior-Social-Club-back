@@ -1,7 +1,7 @@
 from django.db import models
 from django.contrib.auth.models import AbstractUser
 from django.contrib.auth import get_user_model
-
+User = get_user_model()
 
 # Create your models here.
 
@@ -13,5 +13,5 @@ from django.contrib.auth import get_user_model
 # 2. python manage.py migrate
 
 class SocialClub(models.Model):
-    name =  modelsCharfield(max_length=200) 
+    name =  models.Charfield(max_length=200) 
     

@@ -33,10 +33,10 @@ urlpatterns = [
     path('request_membership/', views.request_membership), 
     path('create_profile/', views.create_profile), 
     path('view_profile/', views.view_profile), 
-    path('update_profile/', views.update_profile),
+    path('update_profile/',  views.update_profile),
     path('view_balance/', views.view_balance), 
     path('events/', views.view_all_events), 
     path('rsvp_event/', views.rsvp_event), 
-    path('rsvp_map/', views.rsvp_map), 
+    path('rsvp_map/', views.rsvp_map),
     
 ]
