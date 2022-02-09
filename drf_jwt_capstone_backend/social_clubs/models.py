@@ -12,6 +12,6 @@ from django.contrib.auth import get_user_model
 # 1. python manage.py makemigrations
 # 2. python manage.py migrate
 
-# class SocialClub(models.Model):
-    # name =  modelsCharfield(max_length=200) 
+class SocialClub(models.Model):
+    name =  modelsCharfield(max_length=200) 
     

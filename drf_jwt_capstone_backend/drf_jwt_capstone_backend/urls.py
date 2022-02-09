@@ -19,10 +19,24 @@ from django.urls import path, include
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('api/auth/', include('authentication.urls')),
-    path('register/', RegisterView.as_view(), name='register'),
-    path('profile/', ProfileView.as_view(), name='profile'), 
     
-    path('events/', views.EventsList.as_view()), 
-    path{'event/', view.EventDetails.as_view()},
-    path('members/', views.MembersList.as_view()),
+    # Admin
+    path('approve_member/', views.approve_member), 
+    path('update_member/', views.update_member),
+    path('view_members/', views.view_members), 
+    path('create_event/', views.create_event), 
+    path('view_event/', views.view_event), 
+    path('update_event/', views.update_event), 
+    path('delete_event/', views.delete_event),
+    
+    # Member
+    path('request_membership/', views.request_membership), 
+    path('create_profile/', views.create_profile), 
+    path('view_profile/', views.view_profile), 
+    path('update_profile/', views.update_profile),
+    path('view_balance/', views.view_balance), 
+    path('events/', views.view_all_events), 
+    path('rsvp_event/', views.rsvp_event), 
+    path('rsvp_map/', views.rsvp_map), 
+    
 ]
