@@ -34,14 +34,17 @@ class Event(models.Model):
     state = models.CharField(max_length=2)
     zip_code = models.CharField(max_length=5)  
     
-    # class Member(models.Model):
-    # # middle_name = models.CharField(max_length=20)
-    # # street = models.CharField(max_length=100)
-    # # city = models.CharField(max_length=50)
-    # # state = models.CharField(max_length=15)
-    # # zip_code = models.IntegerField(max_length=5)
-    # is_active = models.CharField(max_length=3)
-    # balance = models.IntegerField() 
+class Member(models.Model):
+    first_name = models.CharField(max_length=20)
+    middle_name = models.CharField(max_length=20)
+    last_name = models.CharField(max_length=20)
+    email = models.CharField(max_length = 35)
+    street = models.CharField(max_length=100)
+    city = models.CharField(max_length=50)
+    state = models.CharField(max_length=15)
+    zip_code = models.IntegerField(max_length=5)
+    is_active = models.CharField(max_length=3)
+    balance = models.IntegerField()  
 
 class SocialClub(models.Model):
     name =  models.CharField(max_length=200) 
