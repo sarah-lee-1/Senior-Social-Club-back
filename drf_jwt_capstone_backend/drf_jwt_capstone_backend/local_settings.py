@@ -8,7 +8,7 @@ DATABASES = {
     'default': {
         'ENGINE': 'mysql.connector.django',
         'NAME': 'senior_social_club_database',
-        'USER': 'root',
+        'USER': 'admin',
         'PASSWORD': 'password',
         'HOST': '127.0.0.1',
         'PORT': '3306',

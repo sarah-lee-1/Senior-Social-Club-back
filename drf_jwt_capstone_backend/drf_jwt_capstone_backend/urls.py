@@ -19,4 +19,10 @@ from django.urls import path, include
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('api/auth/', include('authentication.urls')),
+    path('register/', RegisterView.as_view(), name='register'),
+    path('profile/', ProfileView.as_view(), name='profile'), 
+    
+    path('events/', views.EventsList.as_view()), 
+    path{'event/', view.EventDetails.as_view()},
+    path('members/', views.MembersList.as_view()),
 ]
