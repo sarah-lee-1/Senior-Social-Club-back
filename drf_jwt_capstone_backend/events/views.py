@@ -1,3 +1,4 @@
+from django.shortcuts import render 
 from rest_framework import status
 from rest_framework.views import APIView
 from rest_framework.response import Response
@@ -7,8 +8,8 @@ from django.contrib.auth import get_user_model
 from .serializers import EventSerializer
 from rest_framework import generics
 from rest_framework.permissions import AllowAny
+from django.http.response import Http404 
 from .models import Event 
-from django.http.response import Http404
 User = get_user_model()
 
 
@@ -22,6 +23,15 @@ def create_event(request):
             serializer.save(event=request.event)
             return Response(serializer.data, status=status.HTTP_201_CREATED)
         return Response(serializer.errors, status.HTTP_400_BAD_REQUEST)
+   
+
+@api_view(['GET'])
+@permission_classes([IsAuthenticated])
+def view_event(request, pk):
+    try:
+        return Event.objects.get(pk=pk)
+    except Event.DoesNotExist:
+        raise Http404 
 
 
 @api_view(['PUT'])
