@@ -15,30 +15,24 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
-# from events import views 
-from members import views 
-# from social_clubs import views
+
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('api/auth/', include('authentication.urls')),
+    path('events/', include('events.urls')),
+    path('members/', include('members.urls')),
+    path('social_clubs/', include('social_clubs.urls')), 
     
-    # Admin
-    path('approve_member/', views.create_member), 
-    path('update_member/', views.update_member),
-    path('view_members/', views.view_all_members), 
+    
+   
     
     path('create_event/', views.create_event), 
     path('view_event/', views.view_event), 
     path('update_event/', views.update_event), 
     path('delete_event/', views.delete_event),
     
-    # Member
-    path('request_membership/', views.create_membership_request), 
-    path('create_profile/', views.create_profile), 
-    path('view_profile/', views.view_profile), 
-    path('update_profile/',  views.update_profile),
-    path('view_balance/', views.view_balance), 
+
     
     path('events/', views.view_all_events), 
     path('rsvp_event/', views.rsvp_event), 

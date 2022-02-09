@@ -23,4 +23,3 @@ class Member(models.Model):
     zip_code = models.IntegerField(max_length=5)
     is_active = models.CharField(max_length=3)
     balance = models.IntegerField() 
-    
