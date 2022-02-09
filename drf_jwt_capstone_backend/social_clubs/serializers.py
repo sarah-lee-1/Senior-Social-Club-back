@@ -5,4 +5,4 @@ class SocialClub(serializers.Serializer):
     
     class Meta:
         model = SocialClub 
-        fields = '__all__'
+        fields = ['name']
