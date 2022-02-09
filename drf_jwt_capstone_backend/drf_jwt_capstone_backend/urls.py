@@ -15,8 +15,8 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
-from events import views 
-# from members import views 
+# from events import views 
+from members import views 
 # from social_clubs import views
 
 urlpatterns = [

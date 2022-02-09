@@ -19,7 +19,7 @@ User = get_user_model()
 def create_event(request):
     if request.method == 'POST':
         serializer = EventSerializer(data=request.data)
-        if serializer.is_valid()
+        if serializer.is_valid():
             serializer.save(event=request.event)
             return Response(serializer.data, status=status.HTTP_201_CREATED)
         return Response(serializer.errors, status.HTTP_400_BAD_REQUEST)

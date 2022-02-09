@@ -24,7 +24,7 @@ def create_member(request):
             return Response(serializer.data, status.HTTP_201_CREATED)
         elif request.method == 'GET':
             member = Member.objects.filter(user_id=request.user.id)
-            serializer MemberSerializer(member, many=True)
+            serializer = MemberSerializer(member, many=True)
             return Response(serializer.data) 
 
 
