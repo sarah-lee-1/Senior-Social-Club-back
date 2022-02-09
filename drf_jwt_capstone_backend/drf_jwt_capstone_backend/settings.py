@@ -41,6 +41,8 @@ INSTALLED_APPS = [
     'authentication.apps.AuthenticationConfig',
     'corsheaders',
     'events.apps.EventsConfig',
+    'members.apps.MembersConfig', 
+    'social_clubs.apps.SocialClubsConfig', 
 ]
 
 MIDDLEWARE = [
