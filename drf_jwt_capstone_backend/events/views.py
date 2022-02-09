@@ -12,7 +12,6 @@ from django.http.response import Http404
 User = get_user_model()
 
 
-# Create your views here.
 # Admin/Events 
 @api_view(['POST'])
 @permission_classes([IsAuthenticated])

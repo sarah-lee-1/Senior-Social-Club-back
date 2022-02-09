@@ -21,9 +21,9 @@ urlpatterns = [
     path('api/auth/', include('authentication.urls')),
     
     # Admin
-    path('approve_member/', views.approve_member), 
+    path('approve_member/', views.create_member), 
     path('update_member/', views.update_member),
-    path('view_members/', views.view_members), 
+    path('view_members/', views.view_all_members), 
     path('create_event/', views.create_event), 
     path('view_event/', views.view_event), 
     path('update_event/', views.update_event), 

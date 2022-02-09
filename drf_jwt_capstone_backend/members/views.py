@@ -12,12 +12,39 @@ from django.http.response import Http404
 from .models import Member 
 User = get_user_model()
 
-# Create your views here.
-# Admin/Members
-# approve_member
-# update_member
-# view_members 
 
+# Admin/Members
+@api_view(['POST', 'GET'])
+@permission_classes([IsAuthenticated])
+def create_member(request):
+    if request.method == 'POST':
+        serializer = MemberSerializer(data=request.data)
+        if serializer.is_valid():
+            serializer.save(user=request.user)
+            return Response(serializer.data, status.HTTP_201_CREATED)
+        elif request.method == 'GET':
+            member = Member.objects.filter(user_id=request.user.id)
+            serializer MemberSerializer(member, many=True)
+            return Response(serializer.data) 
+
+
+@api_view(['PUT'])
+@permission_classes([IsAuthenticated]) 
+def update_member(request, pk):
+    member = Member.objects.get(id=pk)
+    serializer = MemberSerializer(member, data=request.data)
+    if serializer.is_valid():
+        serializer.save()
+        return Response(serializer.data)
+    return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)        
+
+
+@api_view(['GET'])
+@permission_classes([IsAuthenticated])
+def view_all_members(request, pk):
+    member = Member.objects.all()
+    serializer = MemberSerializer(member, many=True)
+    return Response(serializer.data)
 
 
 # User/Members 
