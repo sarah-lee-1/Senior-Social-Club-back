@@ -37,6 +37,6 @@ urlpatterns = [
     path('view_balance/', views.view_balance), 
     path('events/', views.view_all_events), 
     path('rsvp_event/', views.rsvp_event), 
-    path('rsvp_map/', views.rsvp_map),
+    path('rsvp_map/', views.view_event_map),
     
 ]
