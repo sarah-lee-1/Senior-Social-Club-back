@@ -13,5 +13,5 @@ User = get_user_model()
 # 2. python manage.py migrate
 
 class SocialClub(models.Model):
-    name =  models.Charfield(max_length=200) 
+    name =  models.CharField(max_length=200) 
     
