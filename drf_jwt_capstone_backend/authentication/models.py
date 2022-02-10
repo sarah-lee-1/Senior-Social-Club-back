@@ -16,4 +16,3 @@ from django.contrib.auth import get_user_model
 class User(AbstractUser):
     middle_name = models.CharField(max_length=20, null=True, blank=True)
 
-    
