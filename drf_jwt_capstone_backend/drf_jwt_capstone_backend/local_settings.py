@@ -9,7 +9,7 @@ DATABASES = {
         'ENGINE': 'mysql.connector.django',
         'NAME': 'drf_jwt_capstone_backend',
         'USER': 'admin',
-        'PASSWORD': 'password',
+        'PASSWORD': 'Ilovecolbyjack2',
         'HOST': '127.0.0.1',
         'PORT': '3306',
         'OPTIONS': {

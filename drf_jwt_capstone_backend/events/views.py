@@ -14,7 +14,7 @@ User = get_user_model()
 
 
 # Admin/Events 
-@api_view(['POST'])
+@api_view(['POST', 'GET'])
 @permission_classes([IsAuthenticated])
 def create_event(request):
     if request.method == 'POST':
@@ -23,7 +23,11 @@ def create_event(request):
             serializer.save(event=request.event)
             return Response(serializer.data, status=status.HTTP_201_CREATED)
         return Response(serializer.errors, status.HTTP_400_BAD_REQUEST)
-   
+    elif request.method == 'GET':
+        event = Event.objects.filter(user_id=request.user.id)
+        serializer = EventSerializer(event, many=True)
+        return Response(serializer.data)
+
 
 @api_view(['GET'])
 @permission_classes([IsAuthenticated])
