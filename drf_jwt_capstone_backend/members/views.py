@@ -12,6 +12,15 @@ from django.http.response import Http404
 from .models import Member 
 User = get_user_model()
 
+class MemberList(APIView):
+    
+    permission_classes = [AllowAny]
+    
+    def get(self, request):
+        members = Member.objects.all()
+        serializer = MemberSerializer(members, many=True)
+        return Response(serializer.data)
+    
 
 # Admin/Members
 @api_view(['POST', 'GET'])
