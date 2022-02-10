@@ -21,11 +21,12 @@ def create_member(request):
         serializer = MemberSerializer(data=request.data)
         if serializer.is_valid():
             serializer.save(user=request.user)
-            return Response(serializer.data, status.HTTP_201_CREATED)
-        elif request.method == 'GET':
-            member = Member.objects.filter(user_id=request.user.id)
-            serializer = MemberSerializer(member, many=True)
-            return Response(serializer.data) 
+            return Response(serializer.data, status=status.HTTP_201_CREATED)
+        return Response(serializer.errors, status=status=status.HTTP_400_BAD_REQUEST)
+    elif request.method == 'GET':
+        member = Member.objects.filter(user_id=request.user.id)
+        serializer = MemberSerializer(member, many=True)
+        return Response(serializer.data) 
 
 
 @api_view(['PUT'])
