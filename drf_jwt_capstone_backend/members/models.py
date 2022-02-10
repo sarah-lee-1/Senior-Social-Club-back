@@ -20,6 +20,6 @@ class Member(models.Model):
     address = models.CharField(max_length=100)
     city = models.CharField(max_length=50)
     state = models.CharField(max_length=15)
-    zip_code = models.IntegerField(max_length=5)
-    is_active = models.CharField(max_length=3)
+    zip_code = models.IntegerField()
+    is_active = models.BooleanField(default=False, )
     balance = models.IntegerField() 

@@ -42,7 +42,7 @@ INSTALLED_APPS = [
     'corsheaders',
     'events.apps.EventsConfig',
     'members.apps.MembersConfig', 
-    'social_clubs.apps.SocialClubsConfig', 
+    # 'social_clubs.apps.SocialClubsConfig', 
 ]
 
 MIDDLEWARE = [
