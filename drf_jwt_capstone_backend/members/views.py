@@ -52,14 +52,6 @@ def view_profile(request, pk):
         return Response(serializer.data)
     except Member.DoesNotExist:
         raise Http404
-    
-    
-    # profile = Member.objects.get(id=pk)
-    # serializer = MemberSerializer(profile)
-    # if serializer.is_valid():
-    #     return Response(serializer.data)
-    # elif Member.DoesNotExist:
-    #     raise Http404 
 
 
 @api_view(['PUT'])

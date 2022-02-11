@@ -58,24 +58,24 @@ def delete_event(request, pk):
         raise Http404 
 
 
-# # User/Events 
-# @api_view(['GET'])
-# @permission_classes([IsAuthenticated])
-# def view_all_events(request, event):
-#     event = Event.objects.all()
-#     serializer = EventSerializer(event, many=True)
-#     return Response(serializer.data)
+# User/Events 
+@api_view(['GET'])
+@permission_classes([AllowAny])
+def view_all_events(request):
+    event = Event.objects.all()
+    serializer = EventSerializer(event, many=True)
+    return Response(serializer.data)
 
 
-# @api_view(['PUT'])
-# @permission_classes([IsAuthenticated])
-# def rsvp_event(request, pk):
-#     rsvp = Event.objects.get(id=pk)
-#     serializer = EventSerializer(rsvp, data=request.data)
-#     if serializer.is_valid():
-#         serializer.save()
-#         return Response(serializer.data)
-#     return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+@api_view(['PUT'])
+@permission_classes([IsAuthenticated])
+def rsvp_event(request, pk):
+    rsvp = Event.objects.get(id=pk)
+    serializer = EventSerializer(rsvp, data=request.data)
+    if serializer.is_valid():
+        serializer.save()
+        return Response(serializer.data)
+    return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 
 # @api_view(['GET'])
@@ -87,17 +87,7 @@ def delete_event(request, pk):
 #     return Event(serializer.data) 
 
 
-# @api_view(['POST'])
-# # # @permission_classes([AllowAny])
-# def create_event(request):
-#     newEvent = request.data 
-#     if request.method == "POST":
-#         serializer = EventSerializer(data = request.data)
-#         if serializer.is_valid():
-#             newEvent.save(request.data)
-#         return Response(serializer.data, status=status.HTTP_201_CREATED)
-#     else:
-#         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST) 
+ 
 
 # class EventList(APIView):
     
