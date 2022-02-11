@@ -67,16 +67,30 @@ def view_all_events(request):
     return Response(serializer.data)
 
 
-@api_view(['PUT'])
-@permission_classes([IsAuthenticated])
-def rsvp_event(request, pk):
-    rsvp = Event.objects.get(id=pk)
-    serializer = EventSerializer(rsvp, data=request.data)
-    if serializer.is_valid():
-        serializer.save()
-        return Response(serializer.data)
-    return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+# @api_view(['PUT'])
+# @permission_classes([IsAuthenticated])
+# def rsvp_event(request, pk):
+#     rsvp = Event.objects.get(id=pk)
+#     serializer = EventSerializer(rsvp, data=request.data)
+#     if serializer.is_valid():
+#         serializer.save()
+#         return Response(serializer.data)
+#     return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
+# @api_view(['POST'])
+# @permission_classes([IsAuthenticated])
+# def view_event_map(request):
+#     if request.method == 'POST':
+#         serializer = EventSerializer(data=request.data)
+#         if serializer.is_valid():
+#             serializer.save(user=request.user)
+#             return Response(serializer.data, status=status.HTTP_201_CREATED)
+#         return Response(serializer.errors, status.HTTP_400_BAD_REQUEST)
+#     elif request.method == 'GET':
+#         events = Event.objects.filter(user_id=request.user.id)
+#         serializer = EventSerializer(events, many=True)
+#         return Response(serializer.data) 
+    
 
 # @api_view(['GET'])
 # @permission_classes([IsAuthenticated])
