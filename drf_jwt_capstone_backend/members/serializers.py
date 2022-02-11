@@ -5,6 +5,6 @@ class MemberSerializer(serializers.ModelSerializer):
     
     class Meta:
         model = Member
-        fields = ['first_name', 'middle_name', 'last_name', 
+        fields = ('first_name', 'middle_name', 'last_name', 
                   'email', 'address', 'city', 'zip_code', 
-                  'is_active', 'balance']
+                  'is_active', 'balance')

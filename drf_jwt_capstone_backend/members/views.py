@@ -13,11 +13,10 @@ User = get_user_model()
 @api_view(['POST'])
 # # @permission_classes([AllowAny])
 def create_member(request):
-    newMember = request.user
     if request.method == "POST":
         serializer = MemberSerializer(data = request.data)
         if serializer.is_valid():
-            newMember.save()
+            serializer.save()
         return Response(serializer.data, status=status.HTTP_201_CREATED)
     else:
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST) 
@@ -58,7 +57,7 @@ def view_profile(request, pk):
 @api_view(['PUT'])
 @permission_classes([AllowAny]) 
 def update_profile(request, pk):
-    profile = Member.objects(pk)
+    profile = Member.objects(id=pk)
     serializer = MemberSerializer(profile, data=request.data)
     if serializer.is_valid():
         serializer.save()

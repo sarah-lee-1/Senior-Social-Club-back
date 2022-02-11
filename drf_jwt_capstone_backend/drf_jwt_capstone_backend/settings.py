@@ -40,7 +40,7 @@ INSTALLED_APPS = [
     'rest_framework',
     'authentication.apps.AuthenticationConfig',
     'corsheaders',
-    # 'events.apps.EventsConfig',
+    'events.apps.EventsConfig',
     'members.apps.MembersConfig', 
     # 'social_clubs.apps.SocialClubsConfig', 
 ]

@@ -10,7 +10,7 @@ urlpatterns = [
     
     # Member
     path('create_membership_request/', views.create_membership_request), 
-    path('view_profile/', views.view_profile), 
-    path('update_profile/', views.update_profile), 
+    path('view_profile/<int:pk>', views.view_profile), 
+    path('update_profile/<int:pk>', views.update_profile), 
     # Admin can also update profile
 ]
