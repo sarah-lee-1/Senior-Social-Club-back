@@ -9,30 +9,45 @@ from django.http.response import Http404
 from .models import Member 
 User = get_user_model()
 
-# class MemberList(APIView):
-    
-#     permission_classes = [AllowAny]
-    
-#     def get(self, request):
-#         members = Member.objects.all()
-#         serializer = MemberSerializer(members, many=True)
-#         return Response(serializer.data)
-    
 
-# Admin/Members
-@api_view(['POST', 'GET'])
-# @permission_classes([IsAuthenticated])
+@api_view(['POST'])
 def create_member(request):
-    if request.method == 'POST':
-        serializer = MemberSerializer(data=request.data)
+    newMember = request.user
+    if request.method == "POST":
+        serializer = MemberSerializer(data = request.data)
         if serializer.is_valid():
-            serializer.save(user=request.user)
-            return Response(serializer.data, status=status.HTTP_201_CREATED)
-        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
-    elif request.method == 'GET':
-        member = Member.objects.filter(user_id=request.user.id)
-        serializer = MemberSerializer(member, many=True)
-        return Response(serializer.data) 
+            newMember.save()
+        return Response(serializer.data, status=status.HTTP_201_CREATED)
+    else:
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST) 
+    
+# @api_view(['POST'])
+# def create_member(request):
+#     if request.method == 'POST':
+#         serializer = MemberSerializer(data = request.data)
+#         if serializer.is_valid():
+#             serializer.save(members=request.user)
+#             return Response(serializer.data, status=status.HTTP_201_CREATED)
+#         else:
+#             return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+# , 'GET'
+    # Admin/Members
+# @api_view(['POST'])
+# # @permission_classes([IsAuthenticated])
+# def create_member(request):
+#     newMember = (request.user)
+#     if request == 'POST':
+#         serializer = MemberSerializer(data=request.data)
+#         if serializer.is_valid():
+#             serializer.save(user=request.user)
+#             return Response(serializer.data, status=status.HTTP_201_CREATED)
+#         return newMember     
+        # return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+        # elif request.method == 'GET':
+        #     member = Member.objects.filter(user_id=request.user.id)
+        #     serializer = MemberSerializer(member, many=True)
+        #     return Response(serializer.data) 
+
 
 
 # @api_view(['PUT'])
@@ -111,3 +126,13 @@ def create_member(request):
 #         return Response(serializer.data)
 #     except Balance.DoesNotExist:
 #         raise Http404 
+
+
+# class MemberList(APIView):
+    
+#     permission_classes = [AllowAny]
+    
+#     def get(self, request):
+#         members = Member.objects.all()
+#         serializer = MemberSerializer(members, many=True)
+#         return Response(serializer.data)
