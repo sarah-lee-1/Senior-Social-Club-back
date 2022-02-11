@@ -17,7 +17,7 @@ class Member(models.Model):
     middle_name = models.CharField(max_length=20)
     last_name = models.CharField(max_length=20)
     email = models.CharField(max_length = 35)
-    address = models.BooleanField(default=True)
+    address = models.TextField(max_length=1024)
     city = models.CharField(max_length=50)
     state = models.CharField(max_length=15)
     zip_code = models.IntegerField()

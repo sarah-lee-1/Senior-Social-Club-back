@@ -31,82 +31,46 @@ def view_all_members(request):
     return Response(serializer.data)
 
 
-# # User/Members 
-# @api_view(['POST'])
-# @permission_classes([IsAuthenticated])
-# def create_membership_request(request):
-#     if request.method == 'POST':
-#         serializer = MemberSerializer(data=request.data)
-#         if serializer.is_valid():
-#             serializer.save(user=request.user)
-#             return Response(serializer.data, status=status.HTTP_201_CREATED)
-#         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
-    
- 
-# @api_view(['POST', 'GET'])
-# def create_profile(request, pk):
-#     if request.method == 'POST':
-#         serializer = MemberSerializer(data=request.data)
-#         if serializer.is_valid():
-#             serializer.save(user=request.user)
-#             return Response(serializer.data, status=status.HTTP_201_CREATED)
-#         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
-#     elif request.method == 'GET':
-#         profile = Member.objects.post(user_id=request.user.id)
-#         serializer = MemberSerializer(profile)
-#         return Response(serializer.data)
+# User/Members 
+@api_view(['POST'])
+@permission_classes([AllowAny])
+def create_membership_request(request):
+    memberRequest = request.user
+    if request.method == 'POST':
+        serializer = MemberSerializer(data=request.data)
+        if serializer.is_valid():
+            memberRequest.save()
+            return Response(serializer.data, status=status.HTTP_201_CREATED)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 
-# @api_view(['GET'])
-# @permission_classes([IsAuthenticated])
-# def view_profile(request, pk):
-#     try:
-#         profile = Member.objects.get(id=pk)
-#         serializer = MemberSerializer(profile)
-#         return Response(serializer.data)
-#     except Member.DoesNotExist:
-#         raise Http404 
+@api_view(['GET'])
+@permission_classes([AllowAny])
+def view_profile(request, pk):
+    profile = Member.objects.get(id=pk)
+    serializer = MemberSerializer(profile)
+    if serializer.is_valid():
+        return Response(serializer.data)
+    elif Member.DoesNotExist:
+        raise Http404 
 
 
-# @api_view(['PUT'])
-# @permission_classes([IsAuthenticated])
-# def update_profile(request, pk):
+@api_view(['PUT'])
+@permission_classes([AllowAny]) 
+def update_profile(request, pk):
+    profile = Member.objects(pk)
+    serializer = MemberSerializer(profile, data=request.data)
+    if serializer.is_valid():
+        serializer.save()
+        return Response(serializer.data)
+    return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+
+# def update_profile[(request, pk):
 #     profile = Member.objects.get(id=pk)
-#     serializer = MemberSerializer(profile, data=request.data)
-#     if serializer.is_valid():
-#         serializer.save()
-#         return Response(serializer.data)
-#     return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
-
-
-# @api_view(['GET'])
-# @permission_classes([IsAuthenticated])
-# def view_balance(request, balance):
-#     try:
-#         balance = Member.objects.get(id=pk)
-#         serializer = MemberSerializer(balance)
-#         return Response(serializer.data)
-#     except Balance.DoesNotExist:
-#         raise Http404 
-
-
-# class MemberList(APIView):
-    
-#     permission_classes = [AllowAny]
-    
-#     def get(self, request):
-#         members = Member.objects.all()
-#         serializer = MemberSerializer(members, many=True)
-#         return Response(serializer.data)
-
-
-# @api_view(['PUT'])
-# @permission_classes([IsAuthenticated]) 
-# def update_member(request, pk):
-#     member = Member.objects.get(id=pk)
 #     serializer = MemberSerializer(member, data=request.data)
 #     if serializer.is_valid():
-#         serializer.save()
+#         profile.save()
 #         return Response(serializer.data)
 #     return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST) 
 
@@ -127,3 +91,4 @@ def view_all_members(request):
 #             member = Member.objects.filter(user_id=request.user.id)
 #             serializer = MemberSerializer(member, many=True)
 #             return Response(serializer.data) 
+
