@@ -11,8 +11,8 @@ from events import views
 urlpatterns = [
    # Admin
     path('create_event/', views.create_event),
-    # path('view_event/', views.view_event), 
-    # path('update_event/', views.update_event), 
+    path('view_event/<int:pk>/', views.view_event), 
+    path('update_event/<int:pk>/', views.update_event), 
     # path('delete_event/', views.delete_event),
  
     

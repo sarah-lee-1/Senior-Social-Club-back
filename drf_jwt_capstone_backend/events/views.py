@@ -24,24 +24,26 @@ def create_event(request):
         return Response(serializer.data)
 
 
-# @api_view(['GET'])
-# @permission_classes([IsAuthenticated])
-# def view_event(request, pk):
-#     try:
-#         return Event.objects.get(pk=pk)
-#     except Event.DoesNotExist:
-#         raise Http404 
+@api_view(['GET'])
+@permission_classes([IsAuthenticated])
+def view_event(request, pk):
+    try:
+        event = Event.objects.get(id=pk)
+        serializer = EventSerializer(event)
+        return Response(serializer.data)
+    except Event.DoesNotExist:
+        raise Http404 
 
 
-# @api_view(['PUT'])
-# @permission_classes([IsAuthenticated])
-# def update_event(request, pk):
-#     event = Event.objects.get(id=pk)
-#     serializer = EventSerializer(event, data=request.data)
-#     if serializer.is_valid():
-#         serializer.save()
-#         return Response(serializer.data)
-#     return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+@api_view(['PUT'])
+@permission_classes([IsAuthenticated])
+def update_event(request, pk):
+    event = Event.objects.get(id=pk)
+    serializer = EventSerializer(event, data=request.data)
+    if serializer.is_valid():
+        serializer.save()
+        return Response(serializer.data)
+    return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 
 # @api_view(['DEL'])

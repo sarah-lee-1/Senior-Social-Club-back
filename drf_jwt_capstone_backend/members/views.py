@@ -46,18 +46,26 @@ def create_membership_request(request):
 @api_view(['GET'])
 @permission_classes([AllowAny])
 def view_profile(request, pk):
-    profile = Member.objects.get(id=pk)
-    serializer = MemberSerializer(profile)
-    if serializer.is_valid():
+    try:
+        profile = Member.objects.get(id=pk)
+        serializer = MemberSerializer(profile)
         return Response(serializer.data)
-    elif Member.DoesNotExist:
-        raise Http404 
+    except Member.DoesNotExist:
+        raise Http404
+    
+    
+    # profile = Member.objects.get(id=pk)
+    # serializer = MemberSerializer(profile)
+    # if serializer.is_valid():
+    #     return Response(serializer.data)
+    # elif Member.DoesNotExist:
+    #     raise Http404 
 
 
 @api_view(['PUT'])
 @permission_classes([AllowAny]) 
 def update_profile(request, pk):
-    profile = Member.objects(id=pk)
+    profile = Member.objects.get(id=pk)
     serializer = MemberSerializer(profile, data=request.data)
     if serializer.is_valid():
         serializer.save()
