@@ -46,16 +46,16 @@ def update_event(request, pk):
     return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 
-# @api_view(['DEL'])
-# @permission_classes([IsAuthenticated])
-# def delete_event(request, pk):
-#     try:
-#         event = Event.objects.get(id=pk)
-#         serializer = EventSerializer(event)
-#         event.delete()
-#         return Response(serializer.data)
-#     except Event.DoesNotExist:
-#         raise Http404 
+@api_view(['DELETE'])
+@permission_classes([AllowAny])
+def delete_event(request, pk):
+    try:
+        event = Event.objects.get(id=pk)
+        serializer = EventSerializer(event)
+        event.delete()
+        return Response(serializer.data)
+    except Event.DoesNotExist:
+        raise Http404 
 
 
 # # User/Events 
