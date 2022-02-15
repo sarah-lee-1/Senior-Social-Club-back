@@ -77,7 +77,7 @@ def view_all_events(request):
 #         return Response(serializer.data)
 #     return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
-# @api_view(['POST'])
+# @api_view(['POST', 'GET'])
 # @permission_classes([IsAuthenticated])
 # def view_event_map(request):
 #     if request.method == 'POST':
