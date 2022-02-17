@@ -18,6 +18,7 @@ urlpatterns = [
     
     # # Member
     path('view_all_events/', views.view_all_events), 
-    path('rsvp_event/<int:pk>/', views.rsvp_event), 
-    # path('rsvp_map/', views.view_event_map),
+    # path('rsvp_event/<int:pk>/', views.rsvp_event), 
+    # path('view_event_map/', views.view_event_map),
 ]
+

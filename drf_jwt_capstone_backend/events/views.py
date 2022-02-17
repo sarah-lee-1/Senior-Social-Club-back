@@ -90,7 +90,7 @@ def view_all_events(request):
 #         events = Event.objects.filter(user_id=request.user.id)
 #         serializer = EventSerializer(events, many=True)
 #         return Response(serializer.data) 
-    
+
 
 # @api_view(['GET'])
 # @permission_classes([IsAuthenticated])
