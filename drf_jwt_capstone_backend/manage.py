@@ -6,7 +6,6 @@ import sys
 
 def main():
     """Run administrative tasks."""
-    print("----------------------------in main")
     os.environ.setdefault('DJANGO_SETTINGS_MODULE',
                           'drf_jwt_capstone_backend.settings')
     try:
