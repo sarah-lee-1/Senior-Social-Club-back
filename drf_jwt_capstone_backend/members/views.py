@@ -59,6 +59,7 @@ def view_profile(request, pk):
 @api_view(['PUT'])
 @permission_classes([AllowAny]) 
 def update_profile(request, pk):
+    # print(f"update_profile ({request}, {pk})")
     profile = Member.objects.get(id=pk)
     serializer = MemberSerializer(profile, data=request.data)
     if serializer.is_valid():
