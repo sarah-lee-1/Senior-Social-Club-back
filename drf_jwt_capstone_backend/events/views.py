@@ -1,4 +1,5 @@
 from rest_framework import status
+from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework.permissions import IsAuthenticated, AllowAny
 from rest_framework.decorators import api_view, permission_classes
@@ -10,7 +11,7 @@ User = get_user_model()
 
 
 @api_view(['POST', 'GET'])
-@permission_classes([AllowAny])
+# @permission_classes([AllowAny])
 def create_event(request):
     if request.method == 'POST':
         serializer = EventSerializer(data=request.data)
@@ -25,7 +26,7 @@ def create_event(request):
 
 
 @api_view(['GET'])
-@permission_classes([IsAuthenticated])
+# @permission_classes([AllowAny])
 def view_event(request, pk):
     try:
         event = Event.objects.get(id=pk)
@@ -36,7 +37,7 @@ def view_event(request, pk):
 
 
 @api_view(['PUT'])
-@permission_classes([IsAuthenticated])
+# @permission_classes([AllowAny])
 def update_event(request, pk):
     event = Event.objects.get(id=pk)
     serializer = EventSerializer(event, data=request.data)
@@ -47,7 +48,7 @@ def update_event(request, pk):
 
 
 @api_view(['DELETE'])
-@permission_classes([AllowAny])
+# @permission_classes([AllowAny])
 def delete_event(request, pk):
     try:
         event = Event.objects.get(id=pk)
@@ -60,7 +61,7 @@ def delete_event(request, pk):
 
 # User/Events 
 @api_view(['GET'])
-@permission_classes([AllowAny])
+# @permission_classes([AllowAny])
 def view_all_events(request):
     event = Event.objects.all()
     serializer = EventSerializer(event, many=True)

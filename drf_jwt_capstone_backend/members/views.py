@@ -6,8 +6,9 @@ from rest_framework.decorators import api_view, permission_classes
 from django.contrib.auth import get_user_model
 from .serializers import MemberSerializer
 from django.http.response import Http404
-from .models import Member 
+from .models import Member
 User = get_user_model()
+
 
 
 @api_view(['POST'])
@@ -23,7 +24,7 @@ def create_member(request):
 
 
 @api_view(['GET'])
-@permission_classes([AllowAny])
+@permission_classes([IsAuthenticated])
 def view_all_members(request):
     members = Member.objects.all()
     serializer = MemberSerializer(members, many=True)
@@ -67,7 +68,6 @@ def update_profile(request, pk):
         return Response(serializer.data)
     else:
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
-
 
 # @api_view(['GET'])
 # @permission_classes([AllowAny])

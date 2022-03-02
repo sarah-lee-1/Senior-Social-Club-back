@@ -11,13 +11,12 @@ from events import views
 urlpatterns = [
    # Admin
     path('create_event/', views.create_event),
-    path('view_event/<int:pk>/', views.view_event), 
+    path('view_event/<int:pk>/', views.view_event),
+    path('view_all_events/', views.view_all_events), 
     path('update_event/<int:pk>/', views.update_event), 
     path('delete_event/<int:pk>/', views.delete_event),
  
-    
-    # # Member
-    path('view_all_events/', views.view_all_events), 
+    # # Member 
     # path('rsvp_event/<int:pk>/', views.rsvp_event), 
     # path('view_event_map/', views.view_event_map),
 ]
