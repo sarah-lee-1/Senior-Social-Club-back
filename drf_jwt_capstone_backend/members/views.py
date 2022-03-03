@@ -24,7 +24,7 @@ def create_member(request):
 
 
 @api_view(['GET'])
-@permission_classes([IsAuthenticated])
+# @permission_classes([AllowAny])
 def view_all_members(request):
     members = Member.objects.all()
     serializer = MemberSerializer(members, many=True)

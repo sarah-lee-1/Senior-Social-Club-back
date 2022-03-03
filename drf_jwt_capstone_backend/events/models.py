@@ -1,3 +1,4 @@
+from pyexpat import model
 from django.db import models
 from django.contrib.auth.models import AbstractUser
 from django.contrib.auth import get_user_model
@@ -23,4 +24,6 @@ class Event(models.Model):
     city = models.CharField(max_length=20)
     state = models.CharField(max_length=2)
     zip_code = models.CharField(max_length=5)    
+    lat= models.CharField(max_length=50, default=None, blank = True)
+    lng= models.CharField(max_length=50, default=None, blank = True)
  
