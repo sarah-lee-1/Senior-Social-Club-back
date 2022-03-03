@@ -68,8 +68,6 @@ def view_all_events(request):
     return Response(serializer.data)
 
 
-
-
 # @api_view(['PUT'])
 # @permission_classes([IsAuthenticated])
 # def rsvp_event(request, pk):
