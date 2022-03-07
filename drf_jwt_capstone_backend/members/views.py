@@ -69,6 +69,19 @@ def update_profile(request, pk):
     else:
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
+@api_view(['PUT'])
+@permission_classes([AllowAny]) 
+def update_member(request, pk):
+    # print(f"update_profile ({request}, {pk})")
+    profile = Member.objects.get(id=pk)
+    serializer = MemberSerializer(profile, data=request.data)
+    if serializer.is_valid():
+        serializer.save()
+        return Response(serializer.data)
+    else:
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+
 # @api_view(['GET'])
 # @permission_classes([AllowAny])
 # def view_profile(request, pk):
